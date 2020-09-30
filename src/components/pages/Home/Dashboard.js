@@ -39,34 +39,6 @@ const Dashboard = () => {
     getData();
   }, []);
 
-  function useHook(query) {
-    const [results, setResults] = useState([]);
-    const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-      async function fetchData() {
-        try {
-          setLoading(true);
-          const response = await fetch(
-            `https://labs25-hrf-teamb-api.herokuapp.com/api`
-          );
-          const json = await response.json();
-          setResults(
-            json.map(item => {
-              return item;
-            })
-          );
-        } finally {
-          setLoading(false);
-        }
-      }
-      if (query !== '') {
-        fetchData();
-      }
-    }, [query]);
-    return [results, loading];
-  }
-
   return (
     <>
       <HeaderNav />
@@ -84,7 +56,6 @@ const Dashboard = () => {
                 setMiddle={setMiddle}
                 query={query}
                 setQuery={setQuery}
-                useHook={useHook}
               />
             </div>
             <div className="placeholder">
@@ -92,12 +63,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="timeline-container">
-            <PbTimeline
-              results={results}
-              setResults={setResults}
-              setMiddle={setMiddle}
-              setSearch={setSearch}
-            />
+            <PbTimeline results={results} setResults={setResults} />
           </div>
         </div>
       </div>

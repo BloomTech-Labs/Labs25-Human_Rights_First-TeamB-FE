@@ -4,6 +4,34 @@ import Loader from 'react-loader-spinner';
 import Collapsible from 'react-collapsible';
 import Moment from 'react-moment';
 
+function useHook(query) {
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        setLoading(true);
+        const response = await fetch(
+          `https://labs25-hrf-teamb-api.herokuapp.com/api`
+        );
+        const json = await response.json();
+        setResults(
+          json.map(item => {
+            return item;
+          })
+        );
+      } finally {
+        setLoading(false);
+      }
+    }
+    if (query !== '') {
+      fetchData();
+    }
+  }, [query]);
+  return [results, loading];
+}
+
 export default function AsyncHooks({
   search,
   setSearch,
@@ -11,7 +39,6 @@ export default function AsyncHooks({
   setMiddle,
   query,
   setQuery,
-  useHook,
 }) {
   const [results, loading] = useHook(query);
 
