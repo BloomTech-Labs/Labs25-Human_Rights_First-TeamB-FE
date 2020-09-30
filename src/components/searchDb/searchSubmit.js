@@ -32,15 +32,11 @@ function useHook(query) {
   return [results, loading];
 }
 
-export default function AsyncHooks({
-  search,
-  setSearch,
-  middle,
-  setMiddle,
-  query,
-  setQuery,
-}) {
+export default function AsyncHooks() {
+  const [search, setSearch] = useState('');
+  const [query, setQuery] = useState('');
   const [results, loading] = useHook(query);
+  const [middle, setMiddle] = useState('');
 
   // Middle is used to as middle layer between main state and query state.
   // This is used to prevent the component from automatically updating onChange.
