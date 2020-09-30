@@ -6,6 +6,7 @@ This is a single page application that takes data scraped from Twitter and Reddi
 
  - [GIF of Usage](https://gyazo.com/76e9d7a0a8c091d0bbfb777ba8dfab0e)
  - [Deployed Website](https://main.d2njpi9j1s76mb.amplifyapp.com/)
+ - [Video presentation](https://youtu.be/4Rk8fbLA0s0)
 
 
 ## Front End
